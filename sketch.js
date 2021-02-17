@@ -1,57 +1,60 @@
 var rows, cols;
 var items = [];
 const CellWidth = 60;
+var ii = 0;
+var jj = 0;
+var n=0;
 
 function setup() {
-	createCanvas(windowWidth, windowHeight);
-	colorMode(HSL, 350, 100, 100);
-	cols = floor(width / CellWidth);
-	rows = floor(height / CellWidth);
-	for (let i = 0; i < rows; i++) {
-		items[i] = [];
-		for (let j = 0; j < cols; j++) {
-			items[i][j] = j;
-		}
-		for (var j = 0; j < rows; j++) {
-			shuffle(items[i], true);
-		}
-	}
+    createCanvas(windowWidth, windowHeight);
+	    colorMode(HSL, 359, 100, 95);
+    cols = floor(width / CellWidth);
+    rows = floor(height / CellWidth);
+    for (let i = 0; i < rows; i++) {
+        items[i] = [];
+        for (let j = 0; j < cols; j++) {
+            items[i][j] = j;
+        }
+    }
+    for (var j = 0; j < rows; j++) {
+        shuffle(items[j], true);
+    }
+n=cols;
 }
 
 function draw() {
-	for (var i = 0; i < rows; i++) {
-		for (var j = 0; j < cols; j++) {
-			var c = color(map(items[i][j], 0, cols, 0, 360), 100, 50);
-			noStroke();
-			fill(c);
-			rect(j * CellWidth, i * CellWidth, CellWidth, CellWidth);
-		}
-	}
-  for (var i = 0; i < rows; i++) {
-    //bubbleSort(items[i]);
-    //quickSort(items[i],0,items.length);
-  }
-}
-function bubbleSort(items) {
-	var length = items.length;
-	for (var i = 0; i < length; i++) {
-		for (var j = 0; j < (length - i - 1); j++) {
-			if (items[j] > items[j + 1]) {
-				var tmp = items[j];
-				items[j] = items[j + 1];
-				items[j + 1] = tmp;
-			}
-		}
-	}
+	frameRate(5);
+    for (var i = 0; i < rows; i++) {
+        for (var j = 0; j < cols; j++) {
+            var c = color(map(items[i][j], 0, cols, 0, 360), 100, 50);
+            stroke(0);
+            fill(c);
+            rect(j * CellWidth, i * CellWidth, CellWidth, CellWidth);
+        }
+    }
+		//for(var k=0; k< items.length; k++)
+		 n= bubbleSort(items[0],n);
 }
 
-function partition(arr, start, end){
+function bubbleSort(arr, n) {
+    if (n <= 1) {
+        return 0;
+    }
+    for (let j = 0; j < n - 1; j++) {
+        if (arr[j] > arr[j + 1]) {
+            [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+        }
+    }
+    return n - 1;
+}
+
+function partition(arr, start, end) {
     const pivotValue = arr[end];
     let pivotIndex = start;
     for (let i = start; i < end; i++) {
         if (arr[i] < pivotValue) {
-        [arr[i], arr[pivotIndex]] = [arr[pivotIndex], arr[i]];
-        pivotIndex++;
+            [arr[i], arr[pivotIndex]] = [arr[pivotIndex], arr[i]];
+            pivotIndex++;
         }
     }
     [arr[pivotIndex], arr[end]] = [arr[end], arr[pivotIndex]]
