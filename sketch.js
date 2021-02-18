@@ -23,7 +23,7 @@ function setup() {
 }
 
 function draw() {
-	frameRate(5);
+	frameRate(3.5);
     for (var i = 0; i < rows; i++) {
         for (var j = 0; j < cols; j++) {
             var c = color(map(items[i][j], 0, cols, 0, 360), 100, 50);
