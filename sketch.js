@@ -1,6 +1,6 @@
 var rows, cols;
 var items = [];
-const CellWidth = 60;
+const CellWidth = 50;
 var ii = 0;
 var jj = 0;
 var n=[];
@@ -8,8 +8,8 @@ var n=[];
 function setup() {
     createCanvas(windowWidth, windowHeight);
 	    colorMode(HSL, 359, 100, 95);
-    cols = floor(width / CellWidth);
-    rows = floor(height / CellWidth);
+    cols = ceil(width / CellWidth);
+    rows = ceil(height / CellWidth);
     for (let i = 0; i < rows; i++) {
         items[i] = [];
         for (let j = 0; j < cols; j++) {
