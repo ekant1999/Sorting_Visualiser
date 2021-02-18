@@ -3,7 +3,7 @@ var items = [];
 const CellWidth = 60;
 var ii = 0;
 var jj = 0;
-var n=0;
+var n=[];
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -15,11 +15,11 @@ function setup() {
         for (let j = 0; j < cols; j++) {
             items[i][j] = j;
         }
+        n[i]=cols;
     }
     for (var j = 0; j < rows; j++) {
         shuffle(items[j], true);
     }
-n=cols;
 }
 
 function draw() {
@@ -32,8 +32,8 @@ function draw() {
             rect(j * CellWidth, i * CellWidth, CellWidth, CellWidth);
         }
     }
-		//for(var k=0; k< items.length; k++)
-		 n= bubbleSort(items[0],n);
+		for(var k=0; k< items.length; k++)
+		 n[k]= bubbleSort(items[k],n[k]);
 }
 
 function bubbleSort(arr, n) {
